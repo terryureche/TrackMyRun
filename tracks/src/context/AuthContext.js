@@ -60,8 +60,6 @@ const signin = (dispatch) => async ({email, password}) => {
     try {
         const response = await trackerApi.post('/signin', {email, password})
         const data = response.data;
-            console.log("email" + email);
-            console.log(password);
         await AsyncStorage.setItem('token', data.token);
 
         dispatch({
@@ -71,8 +69,6 @@ const signin = (dispatch) => async ({email, password}) => {
 
         navigate('TrackList');
     } catch(err) {
-        console.log(err);
-        console.log(err.response);
         dispatch({
             type: 'add_error',
             payload: 'Something went wrong with sign in'
@@ -82,7 +78,6 @@ const signin = (dispatch) => async ({email, password}) => {
 
 
 const signout = (dispatch) => async () => {
-    console.log("gigel");
     await AsyncStorage.removeItem('token');
 
     dispatch({
